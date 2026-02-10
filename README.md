@@ -5,6 +5,8 @@ Portfolio pessoal para vagas de estagio/junior. O frontend é uma aplicação Re
 
 Este projeto também é um ambiente de aprendizado: mostra separação entre frontend e backend, como usar uma API publica via proxy e como centralizar configuracoes.
 
+![Site pronto](Portifolio.png)
+
 Funcionalidades
 ---------------
 - Layout minimalista com foco em leitura.
