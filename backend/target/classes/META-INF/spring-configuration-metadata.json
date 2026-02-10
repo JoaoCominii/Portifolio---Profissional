@@ -1,0 +1,98 @@
+{
+  "groups": [
+    {
+      "name": "app.github",
+      "type": "com.portfolio.config.GitHubProperties",
+      "sourceType": "com.portfolio.config.GitHubProperties"
+    },
+    {
+      "name": "app.profile",
+      "type": "com.portfolio.config.ProfileProperties",
+      "sourceType": "com.portfolio.config.ProfileProperties"
+    },
+    {
+      "name": "app.profile.stack",
+      "type": "com.portfolio.config.ProfileProperties$Stack",
+      "sourceType": "com.portfolio.config.ProfileProperties",
+      "sourceMethod": "getStack()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "app.github.exclude-forks",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.portfolio.config.GitHubProperties"
+    },
+    {
+      "name": "app.github.per-page",
+      "type": "java.lang.Integer",
+      "sourceType": "com.portfolio.config.GitHubProperties"
+    },
+    {
+      "name": "app.github.token",
+      "type": "java.lang.String",
+      "sourceType": "com.portfolio.config.GitHubProperties"
+    },
+    {
+      "name": "app.github.username",
+      "type": "java.lang.String",
+      "sourceType": "com.portfolio.config.GitHubProperties"
+    },
+    {
+      "name": "app.profile.about",
+      "type": "java.lang.String",
+      "sourceType": "com.portfolio.config.ProfileProperties"
+    },
+    {
+      "name": "app.profile.blurb",
+      "type": "java.lang.String",
+      "sourceType": "com.portfolio.config.ProfileProperties"
+    },
+    {
+      "name": "app.profile.github",
+      "type": "java.lang.String",
+      "sourceType": "com.portfolio.config.ProfileProperties"
+    },
+    {
+      "name": "app.profile.languages",
+      "type": "java.util.List<com.portfolio.config.ProfileProperties$Language>",
+      "sourceType": "com.portfolio.config.ProfileProperties"
+    },
+    {
+      "name": "app.profile.links",
+      "type": "java.util.List<com.portfolio.config.ProfileProperties$Link>",
+      "sourceType": "com.portfolio.config.ProfileProperties"
+    },
+    {
+      "name": "app.profile.location",
+      "type": "java.lang.String",
+      "sourceType": "com.portfolio.config.ProfileProperties"
+    },
+    {
+      "name": "app.profile.name",
+      "type": "java.lang.String",
+      "sourceType": "com.portfolio.config.ProfileProperties"
+    },
+    {
+      "name": "app.profile.photo-url",
+      "type": "java.lang.String",
+      "sourceType": "com.portfolio.config.ProfileProperties"
+    },
+    {
+      "name": "app.profile.stack.learning",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.portfolio.config.ProfileProperties$Stack"
+    },
+    {
+      "name": "app.profile.stack.mastered",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.portfolio.config.ProfileProperties$Stack"
+    },
+    {
+      "name": "app.profile.title",
+      "type": "java.lang.String",
+      "sourceType": "com.portfolio.config.ProfileProperties"
+    }
+  ],
+  "hints": []
+}

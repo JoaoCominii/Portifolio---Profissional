@@ -1,0 +1,41 @@
+server:
+  port: 8081
+
+app:
+  profile:
+    name: "Joao Comini"
+    title: "Desenvolvedor de Software Full Stack"
+    blurb: "Apaixonado por código limpo e aprendizado de novas tecnologias."
+    photoUrl: ""
+    about: "Estudante de Ciência da Computação na PUC Minas, com foco em desenvolvimento de software, eletrônica digital e arquitetura de computadores. Tenho experiência acadêmica e prática em programação com Java e C/C++, construção de circuitos digitais no Logisim e desenvolvimento de pequenos projetos envolvendo lógica, estruturas de dados e resolução de problemas. Estou sempre buscando evoluir tecnicamente, entender a fundo o funcionamento de sistemas e participar de projetos que me permitam aplicar conhecimento e colaborar com times de tecnologia.Interesse principal: desenvolvimento backend, engenharia de software e sistemas embarcados."
+    location: "Belo Horizonte, BR"
+    github: "JoaoCominii"
+    links:
+      - label: "LinkedIn"
+        url: "https://www.linkedin.com/in/joão-comini"
+      - label: "GitHub"
+        url: "https://github.com/JoaoCominii"
+    stack:
+      mastered:
+        - "Java"
+        - "React"
+        - "SQL"
+        - "Git"
+      learning:
+        - "Python"
+        - "Spring Boot"
+        - "Docker"
+    languages:
+      - name: "Português"
+        level: "Nativo"
+      - name: "Italiano"
+        level: "Avançado"
+      - name: "Inglês"
+        level: "Avançado"
+      - name: "Espanhol"
+        level: "Intermediário"
+  github:
+    username: "JoaoCominii"
+    token: "${GITHUB_TOKEN:}"
+    perPage: 6
+    excludeForks: true
