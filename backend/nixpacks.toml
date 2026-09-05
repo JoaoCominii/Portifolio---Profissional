@@ -1,0 +1,8 @@
+[phases.setup]
+nixpkgs = ["pkgs.jdk17", "pkgs.maven"]
+
+[phases.build]
+command = "mvn package -DskipTests"
+
+[start]
+command = "java -jar target/*.jar"
