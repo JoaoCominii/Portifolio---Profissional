@@ -1,129 +1,183 @@
-DevPortfolio - Fullstack (React + Java)
-======================================
+# DevPortfolio - Fullstack (React + Java)
 
-Portfolio pessoal para vagas de estagio/junior. O frontend é uma aplicação React e o backend é uma API Spring Boot que busca repos do GitHub e fornece os dados do perfil.
-
-Este projeto também é um ambiente de aprendizado: mostra separação entre frontend e backend, como usar uma API publica via proxy e como centralizar configuracoes.
+Portfolio pessoal com dados estáticos configurados via código. Frontend em React (Vite) e backend em Spring Boot.
 
 ![Site pronto](Portifolio.png)
 
-Funcionalidades
----------------
+## Funcionalidades
+
 - Layout minimalista com foco em leitura.
-- Lista de projetos do GitHub via API Java (o frontend não chama o GitHub direto).
-- Dados do perfil carregados do backend.
+- Dados do perfil e projetos configurados estaticamente no backend.
+- Suporte a múltiplas midias (imagens e videos) nos projetos.
+- Pagina de detalhes para cada projeto.
+- Badge "Privado" para repositorios que nao devem ser exibidos.
 - Layout responsivo.
 
-Tech Stack
-----------
-Frontend
+## Tech Stack
+
+### Frontend
 - React (Vite)
 - Tailwind CSS
 - Axios
 - Lucide React
+- React Router DOM
 
-Backend
+### Backend
 - Java 17
-- Spring Boot (WebFlux)
-- WebClient
+- Spring Boot
+- YAML (configuracao)
 
-Arquitetura
------------
-O navegador acessa o React, o React chama a API Java, e a API Java chama o GitHub.
+## Arquitetura
 
 ```mermaid
 flowchart LR
-	A[User Browser] <--> B[React App]
-	B <--> C[Java Spring Boot API]
-	C <--> D[GitHub Public API]
+	A[User Browser] <--> B[React App - Vercel]
+	B <--> C[Java Spring Boot API - Railway]
 ```
 
-Estrutura do Projeto
---------------------
+## Estrutura do Projeto
+
 ```
 .
 ├─ backend/        # API Spring Boot
-├─ frontend/       # App React
+├─ frontend/       # App React (Vite)
 └─ README.md
 ```
 
-Pre-requisitos
---------------
+## Deploy
+
+- **Frontend:** Vercel (https://joaocomini.dev)
+- **Backend:** Railway (https://portifolio-profissional-production.up.railway.app)
+
+## Pre-requisitos
+
 - Node.js 18+
 - Java JDK 17
 - Maven 3.9+
 
-Como Rodar Localmente
----------------------
-1) Backend
+## Como Rodar Localmente
 
-O backend usa a API do GitHub. Para evitar limite de requisicoes (Erro 403), use um token:
-1. Crie um token (Settings -> Developer Settings -> Personal Access Tokens -> Classic). Nao precisa de permissoes.
-2. Rode com o comando:
+### 1) Backend
 
-Linux/Mac:
 ```bash
-export GITHUB_TOKEN="seu_token_aqui"
+cd backend
 mvn spring-boot:run
 ```
-
-Windows (PowerShell):
-```powershell
-$env:GITHUB_TOKEN="seu_token_aqui"
-mvn spring-boot:run
-```
-Caso nao use token, o limite sera de 60 req/hora.
 
 API em http://localhost:8081
 
-2) Frontend
-```
+### 2) Frontend
+
+```bash
 cd frontend
 npm install
 npm run dev
 ```
+
 App em http://localhost:5173
 
-Configuracoes
--------------
-Backend em backend/src/main/resources/application.yml
+## Configuracoes
 
-Principais valores:
-- server.port: padrao 8081
-- app.profile: nome, titulo, bio, links, stack, languages
-- app.github.username: seu username do GitHub
-- app.github.token: (opcional) token lido da variavel de ambiente
-- app.github.perPage: numero de repos exibidos
-- app.github.excludeForks: ocultar forks
+### Backend (backend/src/main/resources/application.yml)
 
-Frontend:
+```yaml
+app:
+  profile:
+    name: "Seu Nome"
+    title: "Seu Titulo"
+    blurb: "Sua descricao"
+    photoUrl: "URL da foto"
+    about: "Sobre voce"
+    location: "Sua localizacao"
+    github: "seu_usuario_github"
+    links:
+      - label: "GitHub"
+        url: "https://github.com/seu_usuario"
+      - label: "LinkedIn"
+        url: "https://linkedin.com/in/seu_usuario"
+    stack:
+      mastered:
+        - Java
+        - Python
+        - SQL
+      learning:
+        - React
+        - Spring Boot
+        - Docker
+    languages:
+      - name: "Portugues"
+        level: "Nativo"
+      - name: "Ingles"
+        level: "Avancado"
+    featuredProjects:
+      - id: 1
+        name: "Nome do Projeto"
+        tagline: "Descricao curta"
+        description: "Descricao completa"
+        media:
+          - type: "image"
+            url: "https://url-da-imagem.jpg"
+        projectUrl: "https://github.com/seu_usuario/projeto"
+        sourceUrl: "https://github.com/seu_usuario/projeto"
+        tags: "React,Java,PostgreSQL"
+        order: 1
+```
+
+### Frontend
+
 - VITE_API_BASE (padrao http://localhost:8081)
 
-Endpoints da API
-----------------
-- GET /api/profile   -> dados do perfil
-- GET /api/repos     -> repositorios em destaque
+## Campos de Projeto
 
-Ideias de Personalizacao
-------------------------
-- Visual dos Projetos: No GitHub, va em Settings -> General -> Social preview para colocar uma imagem de capa e nao usar o fallback de icone.
-- Ajustar cores e tipografia em frontend/src/index.css
-- Atualizar conteudo em backend/src/main/resources/application.yml
-- Adicionar foto/avatar
-- Fixar projetos especificos em vez de ordenar por stars
+| Campo | Descricao |
+|-------|-----------|
+| `id` | Identificador unico |
+| `name` | Nome do projeto |
+| `tagline` | Frase curta (exibida no card) |
+| `description` | Descricao completa (exibida na pagina de detalhes) |
+| `media` | Array de midias (imagens e videos) |
+| `media[].type` | "image" ou "video" |
+| `media[].url` | URL da midia |
+| `projectUrl` | Link do projeto. Use "Privado" para repositorios privados |
+| `sourceUrl` | Link do codigo fonte |
+| `tags` | Tecnologias separadas por virgula |
+| `order` | Ordem de exibicao |
 
-Troubleshooting
----------------
-- Porta em uso: altere server.port no application.yml ou libere a porta.
-- Repos nao aparecem: confira app.github.username e teste http://localhost:8081/api/repos
-- Frontend sem dados: confirme backend rodando e VITE_API_BASE correto.
+## Endpoints da API
 
-Proximos Passos
----------------
-- Escrever um About curto e direto.
-- Adicionar screenshots ou GIFs.
-- Publicar (Vercel para frontend, Render/Railway para backend).
+| Endpoint | Descricao |
+|----------|-----------|
+| GET /api/profile | Dados do perfil completo |
+| GET /api/projects | Lista de projetos em destaque |
+| GET /api/project/{id} | Detalhes de um projeto especifico |
 
-Licenca
--------
+## Paginas
+
+- `/` - Pagina inicial com perfil e projetos
+- `/project/{id}` - Pagina de detalhes do projeto
+
+## Personalizacao
+
+- **Visual:** Ajustar cores e tipografia em `frontend/src/index.css`
+- **Conteudo:** Atualizar `backend/src/main/resources/application.yml`
+- **Midias:** Adicionar imagens e videos nos projetos via campo `media`
+- **Projetos Privados:** Usar `projectUrl: "Privado"` para exibir badge
+
+## CORS
+
+O backend permite requisicoes de:
+- http://localhost:5173
+- https://joaocomini.dev
+- https://*.vercel.app
+
+Para adicionar novos domínios, edite `@CrossOrigin` em `ProfileController.java`.
+
+## Troubleshooting
+
+- **Frontend sem dados:** Verifique se o backend esta rodando e VITE_API_BASE esta correto.
+- **Erro CORS:** Verifique se o dominio esta na lista de origens permitidas no backend.
+- **Build falhando:** Verifique se as dependencias estao instaladas (npm install / mvn clean install).
+
+## Licenca
+
 MIT
