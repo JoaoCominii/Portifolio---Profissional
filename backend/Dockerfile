@@ -1,17 +1,19 @@
-FROM eclipse-temurin:17-jdk-alpine AS build
+# Build stage
+FROM maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /app
 
-# Copiar arquivos de configuração do Maven
-COPY pom.xml .
+# Copiar todos os arquivos
+COPY pom.xml ./
 COPY src ./src
 
 # Build da aplicação
-RUN ./mvnw package -DskipTests || mvn package -DskipTests
+RUN mvn package -DskipTests
 
-FROM eclipse-temurin:17-jre-alpine
+# Runtime stage
+FROM eclipse-temurin:17-jre
 WORKDIR /app
 
-# Copiar o JAR do target
+# Copiar apenas o JAR
 COPY --from=build /app/target/*.jar app.jar
 
 # Expor a porta
