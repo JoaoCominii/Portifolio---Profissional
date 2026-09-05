@@ -1,5 +1,6 @@
 package com.portfolio.config;
 
+import com.portfolio.model.Project;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -16,6 +17,7 @@ public class ProfileProperties {
   private List<Link> links = new ArrayList<>();
   private Stack stack = new Stack();
   private List<Language> languages = new ArrayList<>();
+  private List<Project> featuredProjects = new ArrayList<>();
 
   public String getName() {
     return name;
@@ -95,6 +97,14 @@ public class ProfileProperties {
 
   public void setLanguages(List<Language> languages) {
     this.languages = languages;
+  }
+
+  public List<Project> getFeaturedProjects() {
+    return featuredProjects;
+  }
+
+  public void setFeaturedProjects(List<Project> featuredProjects) {
+    this.featuredProjects = featuredProjects;
   }
 
   public static class Link {

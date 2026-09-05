@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { ExternalLink, Github, Linkedin, Loader2 } from "lucide-react";
 
@@ -24,51 +25,60 @@ const fallbackProfile = {
   languages: [
     { name: "Português", level: "Nativo" },
     { name: "Inglês", level: "Avançado" }
-  ]
+  ],
+  featuredProjects: []
 };
 
-const ProjectCard = ({ repo }) => {
+const ProjectCard = ({ project }) => {
   const [imgError, setImgError] = useState(false);
 
+  const firstMedia = project.media?.[0];
+
   return (
-    <article className="card">
-      <div className="card-media">
-        {!imgError && repo.imageUrl ? (
-          <img
-            src={repo.imageUrl}
-            alt={`Preview do ${repo.name}`}
-            onError={() => setImgError(true)}
-          />
-        ) : (
-          <div className="media-fallback">
-            <Github size={32} />
-            <span>{repo.language || "Code"}</span>
-          </div>
-        )}
-      </div>
-      <div className="card-body">
-        <h3>{repo.name}</h3>
-        <p>{repo.description || "Descricao em construcao."}</p>
-        <div className="card-links">
-          <a className="btn ghost" href={repo.htmlUrl}>
-            <Github size={16} />
-            <span>GitHub</span>
-          </a>
-          {repo.homepage && (
-            <a className="btn" href={repo.homepage}>
-              <ExternalLink size={16} />
-              <span>Live</span>
-            </a>
+    <Link to={`/project/${project.id}`} className="card-link">
+      <article className="card">
+        <div className="card-media">
+          {!imgError && firstMedia?.type === "image" ? (
+            <img
+              src={firstMedia.url}
+              alt={`Preview do ${project.name}`}
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            <div className="media-fallback">
+              <Github size={32} />
+              <span>{project.tags?.split(",")[0]?.trim() || "Projeto"}</span>
+            </div>
           )}
         </div>
-      </div>
-    </article>
+        <div className="card-body">
+          <h3>{project.name}</h3>
+          <p>{project.tagline || project.description || "Descricao em construcao."}</p>
+          <div className="card-links">
+            {project.projectUrl && project.projectUrl !== "Privado" && (
+              <a
+                className="btn ghost"
+                href={project.projectUrl}
+                onClick={(e) => e.stopPropagation()}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <ExternalLink size={16} />
+                <span>Ver</span>
+              </a>
+            )}
+            {project.projectUrl === "Privado" && (
+              <span className="private-tag">Privado</span>
+            )}
+          </div>
+        </div>
+      </article>
+    </Link>
   );
 };
 
 export default function App() {
   const [profile, setProfile] = useState(fallbackProfile);
-  const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -76,12 +86,10 @@ export default function App() {
 
     async function loadData() {
       try {
-        const [profileRes, reposRes] = await Promise.all([
-          axios.get(`${API_BASE}/api/profile`, { signal: controller.signal }),
-          axios.get(`${API_BASE}/api/repos`, { signal: controller.signal })
-        ]);
+        const profileRes = await axios.get(`${API_BASE}/api/profile`, {
+          signal: controller.signal
+        });
         setProfile(profileRes.data);
-        setRepos(reposRes.data);
       } catch (error) {
         if (!axios.isCancel(error)) {
           console.warn("API offline or unavailable, using fallback data.");
@@ -98,6 +106,8 @@ export default function App() {
   const primaryLinks = useMemo(() => {
     return profile.links?.slice(0, 2) ?? [];
   }, [profile.links]);
+
+  const projects = profile.featuredProjects ?? [];
 
   return (
     <div className="page">
@@ -185,14 +195,16 @@ export default function App() {
           {loading ? (
             <div className="loading">
               <Loader2 className="spin" size={18} />
-              <span>Carregando repositorios...</span>
+              <span>Carregando projetos...</span>
             </div>
-          ) : (
+          ) : projects.length > 0 ? (
             <div className="project-grid">
-              {repos.map((repo) => (
-                <ProjectCard key={repo.id} repo={repo} />
+              {projects.map((project) => (
+                <ProjectCard key={project.id} project={project} />
               ))}
             </div>
+          ) : (
+            <p className="about-text">Nenhum projeto em destaque ainda.</p>
           )}
         </section>
 

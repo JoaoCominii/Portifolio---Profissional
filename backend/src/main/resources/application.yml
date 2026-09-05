@@ -6,8 +6,8 @@ app:
     name: "Joao Comini"
     title: "Desenvolvedor de Software Full Stack"
     blurb: "Apaixonado por código limpo e aprendizado de novas tecnologias."
-    photoUrl: ""
-    about: "Estudante de Ciência da Computação na PUC Minas, com foco em desenvolvimento de software, eletrônica digital e arquitetura de computadores. Tenho experiência acadêmica e prática em programação com Java e C/C++, construção de circuitos digitais no Logisim e desenvolvimento de pequenos projetos envolvendo lógica, estruturas de dados e resolução de problemas. Estou sempre buscando evoluir tecnicamente, entender a fundo o funcionamento de sistemas e participar de projetos que me permitam aplicar conhecimento e colaborar com times de tecnologia.Interesse principal: desenvolvimento backend, engenharia de software e sistemas embarcados."
+    photoUrl: "https://github.com/JoaoCominii.png"
+    about: "Estudante de Ciência da Computação na PUC Minas, 5º semestre, com foco em desenvolvimento de software e uma rotina de aprendizado muito guiada por projetos reais, aprendo melhor construindo do que só estudando teoria. Trabalho principalmente com Java, JavaScript/TypeScript, Node.js, React e Flutter, com experiência em APIs REST, Firebase, SQL e Git. Meu projeto principal é o Folio, um app mobile full stack que estou desenvolvendo do zero com Flutter no mobile, Node.js + TypeScript no backend e Firebase na nuvem, onde cuido de toda a arquitetura de forma autônoma. Também uso ferramentas de IA generativa como Claude e Cursor no dia a dia do desenvolvimento, não como atalho, mas como par de raciocínio para resolver problemas com mais profundidade. Fora do código, sou fluente em inglês e italiano, o que me permite consumir documentação técnica na fonte e colaborar com times internacionais sem barreira. Estou sempre buscando novos desafios, projetos e oportunidades para crescer. Se quiser conversar, é só chamar."
     location: "Belo Horizonte, BR"
     github: "JoaoCominii"
     links:
@@ -18,13 +18,24 @@ app:
     stack:
       mastered:
         - "Java"
+        - "C"
+        - "C++"
+        - "JavaScript"
+        - "TypeScript"
         - "React"
+        - "Flutter"
+        - "Dart"
         - "SQL"
+        - "Firebase"
+        - "Spring Boot"
         - "Git"
       learning:
-        - "Python"
-        - "Spring Boot"
+        - "Node.js"
+        - "PostgreSQL"
         - "Docker"
+        - "Python"
+        - "Angular"
+        - "Testes automatizados"
     languages:
       - name: "Português"
         level: "Nativo"
@@ -34,8 +45,64 @@ app:
         level: "Avançado"
       - name: "Espanhol"
         level: "Intermediário"
-  github:
-    username: "JoaoCominii"
-    token: "${GITHUB_TOKEN:}"
-    perPage: 6
-    excludeForks: true
+    featuredProjects:
+      - id: 1
+        name: "Folio"
+        tagline: "App mobile de leituras sociais"
+        description: "Aplicativo mobile full stack estilo Letterboxd para registro e avaliação de livros com feed social. Flutter no mobile, Node.js + TypeScript no backend REST, Firebase na nuvem e SQLite local."
+        projectUrl: "Privado"
+        sourceUrl: ""
+        tags: "Flutter, Node.js, TypeScript, Firebase, SQLite"
+        order: 1
+        media:
+          - type: "image"
+            url: "https://i.imgur.com/zWAMI4L.png"
+          - type: "image"
+            url: "https://i.imgur.com/ZU19ygO.jpeg"
+          - type: "image"
+            url: "https://i.imgur.com/Uwjuja7.jpeg"
+          - type: "image"
+            url: "https://i.imgur.com/bF983hi.jpeg"
+          - type: "image"
+            url: "https://i.imgur.com/JUIWXAF.jpeg"
+      - id: 2
+        name: "DevPortfolio"
+        tagline: "Portfólio pessoal full stack"
+        description: "Portfólio com frontend em React e backend em Java Spring Boot funcionando como proxy para a API do GitHub. Arquitetura em 3 camadas separando frontend, backend e API externa."
+        projectUrl: "https://github.com/JoaoCominii/Portifolio---Profissional"
+        sourceUrl: "https://github.com/JoaoCominii/Portifolio---Profissional"
+        tags: "React, Java, Spring Boot, Tailwind, Vite"
+        order: 2
+        media: []
+      - id: 3
+        name: "PlayersHub"
+        tagline: "Plataforma de matchmaking para jogadores"
+        description: "Plataforma web para conectar jogadores e formar times de forma rápida e fácil. Desenvolvida em equipe de 4 pessoas na PUC Minas."
+        projectUrl: "https://github.com/JoaoCominii/Times-Para-Jogos---TI1"
+        sourceUrl: "https://github.com/JoaoCominii/Times-Para-Jogos---TI1"
+        tags: "JavaScript, HTML, CSS, JSON Server"
+        order: 3
+        media:
+          - type: "image"
+            url: "https://i.imgur.com/hpzcaTq.png"
+          - type: "image"
+            url: "https://i.imgur.com/Ul6RGVI.png"
+          - type: "image"
+            url: "https://i.imgur.com/yo0SN5j.png"
+          - type: "image"
+            url: "https://i.imgur.com/QoS3FGM.png"
+          - type: "image"
+            url: "https://i.imgur.com/FQYwXS4.png"
+          - type: "image"
+            url: "https://i.imgur.com/jnNHUAe.png"
+          - type: "image"
+            url: "https://i.imgur.com/zAeDmas.png"
+      - id: 4
+        name: "Biblioteca de Jogos"
+        tagline: "Sistema de gerenciamento CRUD"
+        description: "Sistema completo para gerenciamento de clientes, jogos, compras e bibliotecas com relacionamentos 1:N e N:N. Persistência em arquivos binários, índices para busca eficiente e criptografia de senhas."
+        projectUrl: "https://github.com/JoaoCominii/TP-AEDS3"
+        sourceUrl: "https://github.com/JoaoCominii/TP-AEDS3"
+        tags: "Java, Armazenamento Binário"
+        order: 4
+        media: []
