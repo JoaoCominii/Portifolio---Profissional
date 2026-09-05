@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = { "http://localhost:5173", "https://*.vercel.app" })
+@CrossOrigin(origins = { "http://localhost:5173", "https://frontend-opal-nine-37.vercel.app", "https://portifolio-profissional-git-main-eu-ac47.vercel.app" })
 public class ProfileController {
   private final ProfileProperties profile;
 
