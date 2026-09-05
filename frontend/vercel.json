@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://seu-backend.railway.app/api/$1"
+      "destination": "https://portifolio-profissional-production.up.railway.app/api/$1"
     }
   ]
 }
