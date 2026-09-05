@@ -32,7 +32,7 @@ export default function ProjectDetail() {
   if (loading) {
     return (
       <div className="page">
-        <main className="content">
+        <main className="content content-detail">
           <div className="loading">
             <Loader2 className="spin" size={18} />
             <span>Carregando projeto...</span>
@@ -45,7 +45,7 @@ export default function ProjectDetail() {
   if (error || !project) {
     return (
       <div className="page">
-        <main className="content">
+        <main className="content content-detail">
           <Link to="/" className="back-link">
             <ArrowLeft size={16} />
             <span>Voltar para a home</span>
@@ -67,15 +67,15 @@ export default function ProjectDetail() {
   return (
     <div className="page">
       <div className="grid-bg" aria-hidden="true" />
-      <main className="content">
+      <main className="content content-detail">
         <Link to="/" className="back-link">
           <ArrowLeft size={16} />
           <span>Voltar para a home</span>
         </Link>
 
         <header className="detail-header">
+          <h1 className="detail-title">{project.name}</h1>
           <p className="eyebrow">{project.tagline}</p>
-          <h1 className="hero-title">{project.name}</h1>
         </header>
 
         {media.length > 0 && (
@@ -106,7 +106,7 @@ export default function ProjectDetail() {
                   >
                     {item.type === "video" ? (
                       <>
-                        <img src={media[index > 0 ? 0 : 1]?.url || item.url} alt="" />
+                        <img src={item.url || media[0]?.url} alt="" />
                         <div className="play-overlay">
                           <Play size={16} />
                         </div>
@@ -127,38 +127,40 @@ export default function ProjectDetail() {
           </div>
         )}
 
-        <section className="section">
-          <div className="section-title">Sobre o projeto</div>
-          <p className="about-text">{project.description}</p>
-        </section>
-
-        {tags.length > 0 && (
-          <section className="section">
-            <div className="section-title">Tecnologias</div>
-            <div className="chip-row">
-              {tags.map((tag) => (
-                <span key={tag} className="chip">
-                  {tag}
-                </span>
-              ))}
-            </div>
+        <div className="detail-body">
+          <section className="detail-section">
+            <div className="section-title">Sobre o projeto</div>
+            <p className="about-text">{project.description}</p>
           </section>
-        )}
 
-        <section className="section detail-actions">
-          {project.sourceUrl && project.sourceUrl !== "Privado" && (
-            <a className="btn ghost" href={project.sourceUrl} target="_blank" rel="noreferrer">
-              <Github size={16} />
-              <span>Código fonte</span>
-            </a>
+          {tags.length > 0 && (
+            <section className="detail-section">
+              <div className="section-title">Tecnologias</div>
+              <div className="chip-row">
+                {tags.map((tag) => (
+                  <span key={tag} className="chip">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </section>
           )}
-          {(!project.sourceUrl || project.sourceUrl === "Privado") && project.projectUrl === "Privado" && (
-            <span className="private-badge">
-              <Github size={16} />
-              <span>Repositório privado</span>
-            </span>
-          )}
-        </section>
+
+          <section className="detail-section detail-actions">
+            {project.sourceUrl && project.sourceUrl !== "Privado" && (
+              <a className="btn" href={project.sourceUrl} target="_blank" rel="noreferrer">
+                <Github size={16} />
+                <span>Código fonte</span>
+              </a>
+            )}
+            {(!project.sourceUrl || project.sourceUrl === "Privado") && project.projectUrl === "Privado" && (
+              <span className="private-badge">
+                <Github size={16} />
+                <span>Repositório privado</span>
+              </span>
+            )}
+          </section>
+        </div>
 
         <footer className="footer">
           <p>Feito com cafe e codigo.</p>

@@ -1,11 +1,6 @@
 {
   "groups": [
     {
-      "name": "app.github",
-      "type": "com.portfolio.config.GitHubProperties",
-      "sourceType": "com.portfolio.config.GitHubProperties"
-    },
-    {
       "name": "app.profile",
       "type": "com.portfolio.config.ProfileProperties",
       "sourceType": "com.portfolio.config.ProfileProperties"
@@ -19,26 +14,6 @@
   ],
   "properties": [
     {
-      "name": "app.github.exclude-forks",
-      "type": "java.lang.Boolean",
-      "sourceType": "com.portfolio.config.GitHubProperties"
-    },
-    {
-      "name": "app.github.per-page",
-      "type": "java.lang.Integer",
-      "sourceType": "com.portfolio.config.GitHubProperties"
-    },
-    {
-      "name": "app.github.token",
-      "type": "java.lang.String",
-      "sourceType": "com.portfolio.config.GitHubProperties"
-    },
-    {
-      "name": "app.github.username",
-      "type": "java.lang.String",
-      "sourceType": "com.portfolio.config.GitHubProperties"
-    },
-    {
       "name": "app.profile.about",
       "type": "java.lang.String",
       "sourceType": "com.portfolio.config.ProfileProperties"
@@ -46,6 +21,11 @@
     {
       "name": "app.profile.blurb",
       "type": "java.lang.String",
+      "sourceType": "com.portfolio.config.ProfileProperties"
+    },
+    {
+      "name": "app.profile.featured-projects",
+      "type": "java.util.List<com.portfolio.model.Project>",
       "sourceType": "com.portfolio.config.ProfileProperties"
     },
     {

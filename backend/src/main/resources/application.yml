@@ -106,3 +106,13 @@ app:
         tags: "Java, Armazenamento Binário"
         order: 4
         media: []
+      - id: 5
+        name: "Korp Teste"
+        tagline: "Sistema de emissão de notas fiscais"
+        description: "Sistema full stack de emissão de notas fiscais com CRUD de produtos, gestão de estoque e dashboard. Backend em ASP.NET Web API com arquitetura de microsserviços e frontend em Angular."
+        mediaType: ""
+        mediaUrl: ""
+        projectUrl: "https://github.com/JoaoCominii/Korp_Teste_JoaoComini"
+        sourceUrl: "https://github.com/JoaoCominii/Korp_Teste_JoaoComini"
+        tags: "C#, .NET, Angular, SQLite, TypeScript"
+        order: 3
